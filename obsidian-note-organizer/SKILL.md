@@ -109,6 +109,29 @@ Before(常见坏习惯):
 After(课件原文 + 无来源注):
 > `useEffect(didUpdate, deps?)` — "Accepts a function that contains imperative, possibly effectful code."
 
+**(e) 术语格式** — 段落涉及专业术语解释时,统一格式。
+
+- **行内** (段落里夹带术语解释): 用无序列表项放在段落开头——
+  ```
+  - **闭包**:函数与其捕获的外部变量的组合,使函数可在其定义作用域之外被调用时仍访问这些变量。
+  ```
+- **整篇笔记需要"名词解释"段落** (即整段都是术语表): 用 markdown 表格,**列固定为 `名词` / `解释` / `示例(可选)`**——
+  ```markdown
+  | 名词 | 解释 | 示例 |
+  |---|---|---|
+  | 闭包 | 函数与其捕获的外部变量的组合 | 计数器函数保留 count |
+  | Promise | 异步操作最终结果的占位对象 | `fetch(url)` 返回的 Promise |
+  ```
+  - "示例"列如果没有可信示例(课件未给、也不该编造),留空或省略该列;**不要**为了凑满表格而捏造示例。
+- 两种形式不要混用:同一处要么列表项、要么表格,不并列堆叠。表格用于"这整节就是术语表";零散一两个术语用列表项。
+
+**(f) 配图作为附件** — 必要时可把课件中的图作为附件插入笔记。
+
+- 仅当**图对理解必不可少**(流程图、架构图、数据结构图、公式推导图等)时才插入;装饰性插图、过渡页图一律略过。
+- 插入方式:把课件里的图片文件复制到 vault 的附件目录(通常 Obsidian 默认 `attachments/` 或 vault 根,以用户实际配置为准),正文用 `![[文件名.png]]`(Obsidian wiki-link 嵌入语法)或标准 `![alt](路径)` 引用。
+- 命名:用语义化名字(`use-effect-flow.png`),不要保留课件原文件名 `image1.png` 这种无意义命名——除非课件本身就用语义化命名。
+- 在 step 4 规划文件树时,如打算插入图片,把图片文件作为 `🟢 add` 项一并列入(例如 `🟢 attachments/use-effect-flow.png ← add: 复制自课件 slide 7 的流程图`),让用户能预期附件落点。
+
 Do not invent content not present in the courseware. If a concept is referenced but not explained, mark it `TODO(课件未展开)` rather than fabricating.
 
 ## Red Flags — STOP
@@ -125,6 +148,10 @@ These mean you are about to violate the Iron Law. Stop and re-enter the confirm 
 | "Let me start the file with `# <filename>` so it has a title" | Rule (c): no filename h1. First line is the first real section, at `#`. |
 | "I'll add `(来源: slide 4)` so the user can trace it back" | Rule (d): no source annotations, no `## 相关链接` section. |
 | "A short `## 相关链接` section at the end looks polished" | Rule (d): drop it entirely. |
+| "I'll write the term inline as '`闭包` — 函数与…' for prose flow" | Rule (e): use `- **闭包**:…` list item, or table if it's a glossary section. |
+| "The glossary table looks thin, I'll invent a 示例 to fill the third column" | Rule (e): leave 示例 empty or omit the column. Do not fabricate. |
+| "I'll inline every courseware image so the note is self-contained" | Rule (f): only essential diagrams. Decorative/transition images are dropped. |
+| "Image attachments don't need to be in the diff tree" | Rule (f): every `🟢 add` attachment goes in the tree so the user can predict where files land. |
 | "The courseware is unclear here, I'll fill in the gap" | Mark `TODO(课件未展开)`. Do not fabricate. |
 | "`__missing_tools__` says poppler is missing, I'll just skip the PDF silently" | Surface it. Offer the install. Let the user decide. |
 
