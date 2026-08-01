@@ -48,11 +48,11 @@ Read `courseware_dump.md` + vault tree together. Produce a **diff tree** that sh
 - Present the tree, then `AskUserQuestion`: accept / revise / abandon. **Loop until the user explicitly accepts.** No partial commits, no "I'll write the easy ones first".
 
 ### 5. Write the notes
-Once accepted, generate each file. Apply **rule (a)** strictly (see below).
+Once accepted, generate each file. Apply the two note rules below.
 
-## Rule (a) — citation discipline
+## Note rules
 
-> 笔记尽可能使用课件中的原名词解释、原代码。
+**(a) 引用纪律** — 笔记尽可能使用课件中的原名词解释、原代码。
 
 | Content type | Treatment |
 |---|---|
@@ -61,6 +61,12 @@ Once accepted, generate each file. Apply **rule (a)** strictly (see below).
 | Formulas, constants, exact numbers, API signatures | **Verbatim.** |
 | Diagrams / images | Reference the source file path; do not redraw. |
 | Connective prose, summaries, section ordering | Paraphrase / write fresh. |
+
+**(b) 不记发展史** — 课件里的"发展史 / 历史沿革 / 历史背景 / 演进历程"等内容**一律不写入笔记**。
+
+- 在 step 4 规划文件树时,识别出的"发展史"段落**不应产生任何文件或章节**——不要为它建文件、不要为它开 `## 历史` 标题、不要把它合并进其他笔记。
+- 即使用户后续要求补充,也先回到 step 4 把它作为新提案加入 diff tree,经确认后再写——但默认建议跳过。
+- 不影响的:概念本身的演化(例如某算法从 v1 到 v2 的关键差异)属于技术内容,可保留;纯粹的人/时间/事件叙述属于发展史,丢弃。
 
 **Before**
 > React 的 useEffect 可以用来在函数组件里执行副作用操作，比如订阅、计时器等。
@@ -80,6 +86,7 @@ These mean you are about to violate the Iron Law. Stop and re-enter the confirm 
 | "The user is busy, I'll write and let them review the diff" | No. Confirm-then-write, never write-then-diff. |
 | "This is a tiny edit, no need to surface it" | Every change goes in the tree. |
 | "I'll paraphrase the term to fit the note's voice" | Rule (a): verbatim. |
+| "The courseware spends 3 slides on the history, I'll add a short `## 历史` section" | Rule (b): 发展史 一律不记. Drop it from the tree entirely. |
 | "The courseware is unclear here, I'll fill in the gap" | Mark `TODO(课件未展开)`. Do not fabricate. |
 | "`__missing_tools__` says poppler is missing, I'll just skip the PDF silently" | Surface it. Offer the install. Let the user decide. |
 
